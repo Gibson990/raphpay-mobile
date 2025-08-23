@@ -72,6 +72,38 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
+      
+      // Floating Action Button (QR Scan) with proper positioning
+      floatingActionButton: Container(
+        width: 56,
+        height: 56,
+        decoration: BoxDecoration(
+          color: const Color(0xFF2154A1),
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0xFF2154A1).withOpacity(0.3),
+              blurRadius: 12,
+              offset: const Offset(0, 6),
+            ),
+          ],
+        ),
+        child: FloatingActionButton(
+          onPressed: () {
+            // Handle QR scan action
+            print('QR Scan pressed');
+          },
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          child: const Icon(
+            Icons.qr_code_scanner,
+            color: Colors.white,
+            size: 26,
+          ),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      
       bottomNavigationBar: _buildBottomNavigation(),
     );
   }
@@ -594,35 +626,83 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  // Bottom Navigation Bar
+  // Custom Bottom Navigation with proper spacing (Fixed Overflow)
   Widget _buildBottomNavigation() {
     return Container(
-      decoration: BoxDecoration(
-        gradient: AppTheme.primaryGradient,
+      height: 80,
+      decoration: const BoxDecoration(
+        color: Color(0xFF2154A1),
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(30),
           topRight: Radius.circular(30),
         ),
       ),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _buildNavItem(Icons.home, 'Home', 0, true),
-              _buildNavItem(Icons.account_balance_wallet, 'Wallet', 1, false),
-              _buildCenterQRButton(),
-              _buildNavItem(Icons.refresh, 'Resend', 2, false),
-              _buildNavItem(Icons.history, 'History', 3, false),
-            ],
+      child: Stack(
+        children: [
+          // Create the notch cutout
+          Positioned(
+            top: 0,
+            left: MediaQuery.of(context).size.width / 2 - 40, // Center the 80px notch
+            child: Container(
+              width: 80,
+              height: 40,
+              decoration: BoxDecoration(
+                color: AppTheme.backgroundColor,
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(40),
+                  bottomRight: Radius.circular(40),
+                ),
+              ),
+            ),
           ),
-        ),
+
+          // Navigation content with proper spacing
+          Positioned.fill(
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Row(
+                  children: [
+                    // Left section (40% width) - Home & Wallet
+                    Expanded(
+                      flex: 4,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          _buildNavItem(Icons.home, 'Home', 0, _currentIndex == 0),
+                          _buildNavItem(Icons.account_balance_wallet, 'Wallet', 1, _currentIndex == 1),
+                        ],
+                      ),
+                    ),
+
+                    // Center section (20% width) - Reserved for FAB
+                    const Expanded(
+                      flex: 2,
+                      child: SizedBox(),
+                    ),
+
+                    // Right section (40% width) - Resend & History
+                    Expanded(
+                      flex: 4,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          _buildNavItem(Icons.refresh, 'Resend', 2, _currentIndex == 2),
+                          _buildNavItem(Icons.history, 'History', 3, _currentIndex == 3),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
 
-  // Navigation Item Widget
+  // Navigation Item Widget (Fixed - removed Expanded wrapper)
   Widget _buildNavItem(IconData icon, String label, int index, bool isActive) {
     return GestureDetector(
       onTap: () {
@@ -630,23 +710,33 @@ class _HomeScreenState extends State<HomeScreen> {
           _currentIndex = index;
         });
       },
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            icon,
-            color: isActive ? Colors.white : Colors.white.withOpacity(0.6),
-            size: 24,
-          ),
-          const SizedBox(height: 4),
-          Text(
-            label,
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+      behavior: HitTestBehavior.opaque,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
               color: isActive ? Colors.white : Colors.white.withOpacity(0.6),
-              fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
-            ),
+              size: 22,
           ),
-        ],
+            const SizedBox(height: 4),
+            Text(
+              label,
+              textAlign: TextAlign.center,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                color: isActive ? Colors.white : Colors.white.withOpacity(0.6),
+                fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
+                fontSize: 10,
+                height: 1.2,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
