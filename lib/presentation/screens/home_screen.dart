@@ -410,12 +410,12 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 60, // Fixed width for consistent card size
               height: 60, // Fixed height for consistent card size
               decoration: BoxDecoration(
-                color: AppTheme.primaryColor.withOpacity(0.1),
+                color: AppTheme.accentColor.withOpacity(0.1),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Icon(
                 icon,
-                color: AppTheme.primaryColor,
+                color: AppTheme.accentColor,
                 size: 28,
               ),
             ),
@@ -653,24 +653,39 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // Center QR Button
   Widget _buildCenterQRButton() {
-    return Container(
-      width: 60,
-      height: 60,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(30),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 10,
-            offset: const Offset(0, 5),
+    return GestureDetector(
+      onTap: () {
+        // Handle QR scan action
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 50,
+            height: 50,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(25),
+              border: Border.all(
+                color: AppTheme.primaryColor,
+                width: 2,
+              ),
+            ),
+            child: const Icon(
+              Icons.qr_code,
+              color: AppTheme.primaryColor,
+              size: 24,
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            'Scan',
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ],
-      ),
-      child: const Icon(
-        Icons.qr_code,
-        color: AppTheme.primaryColor,
-        size: 30,
       ),
     );
   }
