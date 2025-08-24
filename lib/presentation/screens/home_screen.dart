@@ -40,14 +40,22 @@ class _HomeScreenState extends State<HomeScreen> {
             // Header Section
             _buildHeader(),
             
-            // Main Content
+            // Main Content with proper curved corner handling
             Expanded(
-              child: SingleChildScrollView(
-                padding: EdgeInsets.all(AppConstants.defaultPadding),
-                child: Column(
-                  children: [
-                    // International Money Transfer Banner
-                    _buildTransferBanner(),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: AppTheme.backgroundColor,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
+                ),
+                child: SingleChildScrollView(
+                  padding: EdgeInsets.all(AppConstants.defaultPadding),
+                  child: Column(
+                    children: [
+                      // International Money Transfer Banner
+                      _buildTransferBanner(),
                     
                     const SizedBox(height: 20),
                     
@@ -68,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-            ),
+            ),),
           ],
         ),
       ),
