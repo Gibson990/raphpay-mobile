@@ -629,7 +629,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // Custom Bottom Navigation with proper spacing (Fixed Overflow)
   Widget _buildBottomNavigation() {
     return Container(
-      height: 80,
+      height: 90,
       decoration: const BoxDecoration(
         color: Color(0xFF2154A1),
         borderRadius: BorderRadius.only(
@@ -712,7 +712,7 @@ class _HomeScreenState extends State<HomeScreen> {
       },
       behavior: HitTestBehavior.opaque,
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -720,9 +720,9 @@ class _HomeScreenState extends State<HomeScreen> {
             Icon(
               icon,
               color: isActive ? Colors.white : Colors.white.withOpacity(0.6),
-              size: 22,
-          ),
-            const SizedBox(height: 4),
+              size: 26,
+            ),
+            const SizedBox(height: 1),
             Text(
               label,
               textAlign: TextAlign.center,
@@ -731,8 +731,8 @@ class _HomeScreenState extends State<HomeScreen> {
               style: Theme.of(context).textTheme.labelSmall?.copyWith(
                 color: isActive ? Colors.white : Colors.white.withOpacity(0.6),
                 fontWeight: isActive ? FontWeight.w600 : FontWeight.w400,
-                fontSize: 10,
-                height: 1.2,
+                fontSize: 8,
+                height: 0.8,
               ),
             ),
           ],
@@ -751,11 +751,11 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            width: 50,
-            height: 50,
+            width: 52,
+            height: 52,
             decoration: BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(25),
+              borderRadius: BorderRadius.circular(26),
               border: Border.all(
                 color: AppTheme.primaryColor,
                 width: 2,
@@ -764,15 +764,17 @@ class _HomeScreenState extends State<HomeScreen> {
             child: const Icon(
               Icons.qr_code,
               color: AppTheme.primaryColor,
-              size: 24,
+              size: 26,
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 2),
           Text(
             'Scan',
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
               color: Colors.white,
               fontWeight: FontWeight.w600,
+              fontSize: 9,
+              height: 0.9,
             ),
           ),
         ],
