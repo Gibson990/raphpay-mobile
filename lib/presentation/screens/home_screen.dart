@@ -280,12 +280,15 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    Text(
-                      'Connect with your loved ones in World to the last mile by sending and receiving money quickly and securely.',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        color: Colors.white.withOpacity(0.9),
-                        height: 1.4,
+                    RichText(
+                      text: TextSpan(
+                        text: 'Connect with your loved ones in World to the last mile by sending and receiving money quickly and securely.',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Colors.white.withOpacity(0.9),
+                          height: 1.4,
+                        ),
                       ),
+                      maxLines: 4,
                     ),
                   ],
                 ),
@@ -307,80 +310,45 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ],
           ),
-          const SizedBox(height: 20),
-          // Pagination dots and navigation
+          const SizedBox(height: 9),
+          // Pagination dots centered
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Pagination dots
-              Row(
-                children: [
-                  Container(
-                    width: 8,
-                    height: 8,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Container(
-                    width: 8,
-                    height: 8,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.3),
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Container(
-                    width: 8,
-                    height: 8,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.3),
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Container(
-                    width: 8,
-                    height: 8,
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.3),
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                ],
+              Container(
+                width: 8,
+                height: 8,
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  shape: BoxShape.circle,
+                ),
               ),
-              // Navigation arrows
-              Row(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: const Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.white,
-                      size: 16,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: const Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.white,
-                      size: 16,
-                    ),
-                  ),
-                ],
+              const SizedBox(width: 8),
+              Container(
+                width: 8,
+                height: 8,
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.3),
+                  shape: BoxShape.circle,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Container(
+                width: 8,
+                height: 8,
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.3),
+                  shape: BoxShape.circle,
+                ),
+              ),
+              const SizedBox(width: 8),
+              Container(
+                width: 8,
+                height: 8,
+                decoration: BoxDecoration(
+                  color: Colors.white.withOpacity(0.3),
+                  shape: BoxShape.circle,
+                ),
               ),
             ],
           ),
@@ -392,7 +360,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // Money Transfer Section
   Widget _buildMoneyTransferSection() {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: AppTheme.surfaceColor,
         borderRadius: BorderRadius.circular(24),
@@ -411,7 +379,7 @@ class _HomeScreenState extends State<HomeScreen> {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 6),
           // Action Grid - Single Row with Proper Spacing
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -434,7 +402,7 @@ class _HomeScreenState extends State<HomeScreen> {
         // Handle tap action
       },
       child: SizedBox(
-        width: 80, // Increased width for better text wrapping
+        width: 85, // Increased width for better text wrapping
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -451,9 +419,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 size: 28,
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 6),
             SizedBox(
-              height: 40, // Fixed height for text area
+              height: 32, // Fixed height for text area
               child: Text(
                 label,
                 textAlign: TextAlign.center,
@@ -495,7 +463,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: 7),
                 Text(
                   'Check your current wallet balance and keep track of your spending.',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -503,7 +471,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     height: 1.4,
                   ),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 15),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                   decoration: BoxDecoration(
@@ -544,7 +512,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // Features Section
   Widget _buildFeaturesSection() {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: AppTheme.surfaceColor,
         borderRadius: BorderRadius.circular(24),
@@ -563,7 +531,7 @@ class _HomeScreenState extends State<HomeScreen> {
               fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 6),
           // Features Grid - Single Row with Proper Spacing (identical to Money Transfer)
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -586,7 +554,7 @@ class _HomeScreenState extends State<HomeScreen> {
         // Handle tap action
       },
       child: SizedBox(
-        width: 80, // Increased width for better text wrapping
+        width: 85, // Increased width for better text wrapping
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -603,9 +571,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 size: 28,
               ),
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 6),
             SizedBox(
-              height: 40, // Fixed height for text area
+              height: 32, // Fixed height for text area
               child: Text(
                 label,
                 textAlign: TextAlign.center,
